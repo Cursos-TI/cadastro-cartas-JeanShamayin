@@ -1,8 +1,6 @@
 #include <stdio.h>
-
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das cartas
-// Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
+// Desafio Super Trunfo - Nivel MESTRE
+// Tema 3 - A Batalha das cartas!
 /*Exemplos que estou usando para testa o codigo, caso queira utilizar:
 A
 A01
@@ -21,57 +19,55 @@ PIB: R$ 59.865.989.619
 Pontos Turisticos: 30
 */
 int main() {
-  // Área para definição das variáveis para armazenar as propriedades das cidades
-   
     // Dados das duas cartas
     char estado1, estado2;
     char codigo1[4], codigo2[4];
     char cidade1[50], cidade2[50];
-    int populacao1, populacao2;
+
+    unsigned long int populacao1, populacao2; // Agora unsigned long int, assim como pedido no desafio
     float area1, area2;
     float pib1, pib2;
     int pontos1, pontos2;
 
-    // Novas variáveis calculadas (Nivel Aventureiro :D )
     float densidade1, densidade2;
     float pibcapita1, pibcapita2;
-  
-    // Área para entrada de dados
-    
-    printf("===== SUPER TRUNFO - CADASTRO DE CARTAS =====\n\n");
+    float superPoder1, superPoder2;
+
+    printf("===== SUPER TRUNFO - NIVEL MESTRE =====\n\n");
 
     // ---- CARTA 1 ----
+    /*Coloquei esses espaços antes, pois senti que estava tendo aquele "bug" de quando da espaço ele pula as outras categorias, ainda não entendi isso direito, mas resolvi assim KKKK
+    Coloquei uns exemplos e sugestões entre () para o usuario não ter duvida KKKK*/
+    printf("===!@!@! ATENÇÃO: COLOQUE OS DADOS SOMENTE LETRAS E NUMEROS, SEM CARACTERES ESPECIAIS!  !@!@!===\n");
     printf("=== Cadastro da Carta 1 ===\n");
-
     printf("Estado (A-H): ");
-    scanf(" %c", &estado1);  // espaço antes do %c evita ler enter
+    scanf(" %c", &estado1);
 
     printf("Codigo da Carta (ex: A01): ");
     scanf(" %s", codigo1);
 
     printf("Nome da Cidade: ");
-    scanf(" %[^\n]", cidade1);  // lê string com espaços
+    scanf(" %[^\n]", cidade1);
 
     printf("Populacao: ");
-    scanf(" %d", &populacao1);
+    scanf(" %lu", &populacao1);
 
     printf("Area (km²): ");
     scanf(" %f", &area1);
 
-    printf("PIB: ");
+    printf("PIB (em bilhões): ");
     scanf(" %f", &pib1);
 
     printf("Numero de Pontos Turisticos: ");
     scanf(" %d", &pontos1);
 
-    // Cálculos da carta 1
     densidade1 = populacao1 / area1;
     pibcapita1 = pib1 / populacao1;
+    superPoder1 = (float)populacao1 + area1 + pib1 + pontos1 + pibcapita1 + (1.0 / densidade1);
 
 
     // ---- CARTA 2 ----
     printf("\n=== Cadastro da Carta 2 ===\n");
-
     printf("Estado (A-H): ");
     scanf(" %c", &estado2);
 
@@ -82,24 +78,23 @@ int main() {
     scanf(" %[^\n]", cidade2);
 
     printf("Populacao: ");
-    scanf(" %d", &populacao2);
+    scanf(" %lu", &populacao2);
 
     printf("Area (km²): ");
     scanf(" %f", &area2);
 
-    printf("PIB: ");
+    printf("PIB (em bilhões): ");
     scanf(" %f", &pib2);
 
     printf("Numero de Pontos Turisticos: ");
     scanf(" %d", &pontos2);
 
-    // Cálculos da carta 2
     densidade2 = populacao2 / area2;
     pibcapita2 = pib2 / populacao2;
+    superPoder2 = (float)populacao2 + area2 + pib2 + pontos2 + pibcapita2 + (1.0 / densidade2);
 
-    
-    // Área para exibição dos dados da cidade
-    
+
+    // ---- EXIBIÇÃO ----
     printf("\n\n===== CARTAS CADASTRADAS =====\n");
 
     printf("\n--- Carta 1 ---\n");
@@ -124,6 +119,17 @@ int main() {
     printf("Densidade Populacional: %.2f hab/km²\n", densidade2);
     printf("PIB per Capita: %.2f reais\n", pibcapita2);
 
-    
-return 0;
-} 
+
+    // ---- EXIBIÇÃO E BATALHA ----
+    printf("\n\n===== RESULTADO DA BATALHA =====\n\n");
+
+    printf("Populacao: Carta 1 venceu (%d)\n", populacao1 > populacao2);
+    printf("Area: Carta 1 venceu (%d)\n", area1 > area2);
+    printf("PIB: Carta 1 venceu (%d)\n", pib1 > pib2);
+    printf("Pontos Turisticos: Carta 1 venceu (%d)\n", pontos1 > pontos2);
+    printf("Densidade Populacional: Carta 1 venceu (%d)\n", densidade1 < densidade2);
+    printf("PIB per Capita: Carta 1 venceu (%d)\n", pibcapita1 > pibcapita2);
+    printf("Super Poder: Carta 1 venceu (%d)\n", superPoder1 > superPoder2);
+
+    return 0;
+}
